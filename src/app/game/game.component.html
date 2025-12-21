@@ -1,1 +1,5 @@
-<p>game works!</p>
+<div class="field">
+    <div class="card-stack"> 
+        <img *ngFor="let c of [0,2,4,6,8]; let i = index"  [ngStyle]="{rotate: 1*i+'deg'}"  src="/assets/img/cards/card_cover.png" alt="">
+    </div>
+</div>

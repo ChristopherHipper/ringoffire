@@ -1,0 +1,18 @@
+@import './../../styles';
+
+.field{
+    position: relative;
+    @include maxWidthANDHight;
+    @include display-center;
+    max-width: 100%;
+    background-image: url('/assets/img/board.jpg');
+}
+
+.card-stack{
+    img{
+        position: absolute;
+        width: 150px;
+        transform: translate(-50%, -50%); 
+    }
+    
+}

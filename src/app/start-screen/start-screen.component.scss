@@ -1,40 +1,27 @@
+@import './../../styles';
+
 .start-screen {
     background-color: black;
-    width: 100vw;
-    height: 100vh;
+    @include maxWidthANDHight;
     max-width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img{
-        height: 100vh;
-        width: 100vw;
+    @include display-center;
+
+    img {
+        @include maxWidthANDHight;
     }
 }
 
-.start-label-box{
+.start-label-box {
     position: absolute;
-    right: 20%;
-    top: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    &:hover{
-        filter: brightness(1.3);
-    }
-    img{
-        width: 400px;
-        height: 150px;
+    @include display-center;
+    right: 30%;
+    img {
+        width: 20vw;
+        height: auto;
         cursor: pointer;
 
+        &:hover {
+            filter: brightness(1.4);
+        }
     }
-}
-
-.start-game{
-   position: absolute;
-    cursor: pointer;
-    font-family: 'Libre Caslon Text';
-    font-weight: 700;
-    font-size: 42px;
 }

@@ -1,16 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../models/game';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
+
+
 export class GameComponent implements OnInit {
   game!: Game;
   currentCard: string | undefined = '';
   pickCardAnimation: boolean = false;
   rotation = '0deg';
+  currentPlayer:number = 1;
+
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.newGame();
@@ -30,19 +37,31 @@ export class GameComponent implements OnInit {
         this.pickCardAnimation = false;
         if (this.currentCard != undefined) {
           this.game.playedCards.push({
-            name : this.currentCard,
+            name: this.currentCard,
             rotation: this.rotation
-          })
+          });
         } else {
-          alert('Game End')
-        }
+          alert('Game End');
+        };
       }, 1000);
-    }
+    };
   };
 
   getRandomRotation(): string {
     return `${Math.floor(Math.random() * 5) - 2}deg`;
+  };
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogAddPlayerComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(name => {
+      if (name) {
+        this.game.players.push(name)
+      }
+
+    });
   }
 
 
-}
+};

@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<app-player *ngFor="let player of game.players; let i = index;" [style]="{top: i*100+'px'}"  class="player-position"
+<app-player *ngFor="let player of game.players; let i = index;" [style]="{top: i*100+'px'}" [activePlayer]="i == game.currentPlayer" class="player-position"
     [playerName]="player"></app-player>
 
 

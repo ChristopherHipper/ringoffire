@@ -4,7 +4,7 @@
     align-items: center;
     gap: 32px;
     font-size: 32px;
-    background-color: rgba(245, 245, 245, 0.701);
+    background-color: rgba(245, 245, 245, 0.492);
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
     margin-top: 12px;
@@ -14,4 +14,8 @@
         height: 50px;
         margin-left: 20px;
     }
+}
+
+.active-Player{
+    background-color: rgb(245, 245, 245);
 }

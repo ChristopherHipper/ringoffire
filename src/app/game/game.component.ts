@@ -15,7 +15,6 @@ export class GameComponent implements OnInit {
   currentCard: string | undefined = '';
   pickCardAnimation: boolean = false;
   rotation = '0deg';
-  currentPlayer:number = 1;
 
   constructor(public dialog: MatDialog) { }
 
@@ -40,6 +39,7 @@ export class GameComponent implements OnInit {
             name: this.currentCard,
             rotation: this.rotation
           });
+          this.game.currentPlayer++;
         } else {
           alert('Game End');
         };

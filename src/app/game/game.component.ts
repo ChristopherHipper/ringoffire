@@ -28,24 +28,36 @@ export class GameComponent implements OnInit {
 
 
   takeCard() {
+    if (this.game.players.length == 0) {
+      return
+    }
     if (!this.pickCardAnimation) {
       this.currentCard = this.game.stack.pop();
       this.rotation = this.getRandomRotation();
       this.pickCardAnimation = true;
-      setTimeout(() => {
-        this.pickCardAnimation = false;
-        if (this.currentCard != undefined) {
-          this.game.playedCards.push({
-            name: this.currentCard,
-            rotation: this.rotation
-          });
-          this.game.currentPlayer++;
-        } else {
-          alert('Game End');
-        };
-      }, 1000);
+      this.handelCard();
     };
   };
+
+  handelCurrentPlayer() {
+    this.game.currentPlayer++
+    this.game.currentPlayer = this.game.currentPlayer % this.game.players.length
+  }
+
+  handelCard() {
+    setTimeout(() => {
+      this.pickCardAnimation = false;
+      if (this.currentCard != undefined) {
+        this.game.playedCards.push({
+          name: this.currentCard,
+          rotation: this.rotation
+        });
+        this.handelCurrentPlayer();
+      } else {
+        alert('Game End');
+      };
+    }, 1000);
+  }
 
   getRandomRotation(): string {
     return `${Math.floor(Math.random() * 5) - 2}deg`;

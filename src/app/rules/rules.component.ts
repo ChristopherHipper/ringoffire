@@ -6,31 +6,31 @@ import { Component, Input, OnChanges } from '@angular/core';
   styleUrls: ['./rules.component.scss']
 })
 export class RulesComponent implements OnChanges {
-  title:string = '';
-  description: string = '';
+  title:string = 'Spielablauf:';
+  description: string = 'Füge Spieler hinzu "+". Anschließend könnt ihr spielen. Klicke auf den Stapel, wenn du dran bist und schau was deine bzw. eure Aufgaben sind';
   @Input() card: string | undefined = '';
 
   cardAction = [
-    { title: 'Waterfall', description: 'Everyone has to start drinking at the same time. As soon as player 1 stops drinking, player 2 may stop drinking. Player 3 may stop as soon as player 2 stops drinking, and so on.' },
-    { title: 'You', description: 'You decide who drinks' },
-    { title: 'Me', description: 'Congrats! Drink a shot!' },
-    { title: 'Category', description: 'Come up with a category (e.g. Colors). Each player must enumerate one item from the category.' },
-    { title: 'Bust a jive', description: 'Player 1 makes a dance move. Player 2 repeats the dance move and adds a second one. ' },
-    { title: 'Chicks', description: 'All girls drink.' },
-    { title: 'Heaven', description: 'Put your hands up! The last player drinks!' },
-    { title: 'Mate', description: 'Pick a mate. Your mate must always drink when you drink and the other way around.' },
-    { title: 'Thumbmaster', description: '' },
-    { title: 'Men', description: 'All men drink.' },
-    { title: 'Quizmaster', description: '' },
-    { title: 'Never have i ever...', description: 'Say something you nnever did. Everyone who did it has to drink.' },
-    { title: 'Rule', description: 'Make a rule. Everyone needs to drink when he breaks the rule.' },
+    { title: 'Label', description: 'Nenne du eine Marke (z.B.: BMW) rechte Nachhbar nennt ebenfalls eine Marke aus der gleichen Kategorie (z.B. Audi) usw.... Wer zu lange braucht oder es nicht schafft, muss trinken.' },
+    { title: 'You', description: 'Du bestimmst jemanden, der einen Schluck trinken muss.' },
+    { title: 'Me', description: 'Du selbst trinkst einen Schluck.' },
+    { title: 'Floor', description: 'Alle müssen den Boden berühren – der Letzte trinkt.' },
+    { title: 'Dancer', description: 'Du machst einen Tanzmove vor. Dein rechter Nachbar wiederholt den Move und fügt einen weiteren hinzu, und so geht es weiter. Der letzte muss den kompletten Tanz vorführen; wenn er einen Fehler macht, muss er trinken.' },
+    { title: 'Chicks', description: 'Alle Frauen trinken.' },
+    { title: 'Thumbmaster ', description: 'Du kannst jederzeit deinen Daumen auf den Tisch legen. Wer als Letzter reagiert, trinkt.' },
+    { title: 'Mate', description: 'Wähle einen Mitspieler – ab jetzt müsst ihr immer gemeinsam trinken.' },
+    { title: 'Rhyme', description: 'Sag ein Wort. Im Uhrzeigersinn muss jeder einen Reim sagen. Wer scheitert, trinkt.' },
+    { title: 'Men', description: 'Alle Männer trinken.' },
+    { title: 'Quizmaster', description: 'Erfinde eine Regel, die ab sofort gilt. Beispiel: „Nur mit links trinken“ oder „Niemand darf fluchen“.' },
+    { title: 'Never have i ever...', description: 'Starte eine Runde „Ich hab noch nie…“ – wer etwas doch getan hat, trinkt.' },
+    { title: 'Speaker ', description: 'Mit dir darf niemand reden, bis jemand anderes eine Königin gezogen hat. Wer doch mit dir redet, muss trinken.' },
   ];
 
   ngOnChanges(): void {
     if ( this.card && this.card != undefined) {
       let cardNumber = +this.card.split('_')[1];
       this.title = this.cardAction[cardNumber-1].title;
-      this.description = this.cardAction[cardNumber].description;
+      this.description = this.cardAction[cardNumber-1].description;
     }
   }
 }

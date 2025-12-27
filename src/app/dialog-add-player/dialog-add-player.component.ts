@@ -1,4 +1,5 @@
-import { Component,AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -14,7 +15,14 @@ export class DialogAddPlayerComponent implements AfterViewInit {
       this.nameInput.nativeElement.focus();
     });
   }
-  name:string = '';
 
-  onNoClick(){}
+  constructor(public dialogRef: MatDialogRef<DialogAddPlayerComponent>,) {
+
+  }
+
+  name: string = '';
+
+  onNoClick() {
+    this.dialogRef.close();
+  }
 }

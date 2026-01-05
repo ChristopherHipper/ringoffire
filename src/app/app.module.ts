@@ -17,6 +17,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { RulesComponent } from './rules/rules.component';
 import {MatCardModule} from '@angular/material/card';
 
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+
+import { environment } from '../app/environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +41,9 @@ import {MatCardModule} from '@angular/material/card';
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
   ],
   providers: [],
   bootstrap: [AppComponent]

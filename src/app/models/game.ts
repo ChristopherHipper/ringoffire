@@ -21,4 +21,13 @@ export class Game {
     shuffleStack(arr: String[]) {
         arr.sort(() => Math.random() - 0.5);
     };
+
+    gameToJson(){
+        return {
+            players: this.players,
+            stack: this.stack,
+            playedCards: this.playedCards,
+            currentPlayer: this.currentPlayer
+        }
+    }
 };

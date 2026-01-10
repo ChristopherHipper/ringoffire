@@ -14,15 +14,13 @@ export class DialogAddPlayerComponent implements AfterViewInit {
     Promise.resolve().then(() => {
       this.nameInput.nativeElement.focus();
     });
-  }
+  };
 
-  constructor(public dialogRef: MatDialogRef<DialogAddPlayerComponent>,) {
-
-  }
+  constructor(public dialogRef: MatDialogRef<DialogAddPlayerComponent>,) {}
 
   name: string = '';
 
   onNoClick() {
     this.dialogRef.close();
-  }
+  };
 }

@@ -5,7 +5,7 @@
         <img (click)="takeCard()" class="top-card" src="assets/img/cards/card_cover.png" alt="">
         <img *ngFor="let card of game.playedCards" class="played-card" src="assets/img/cards/{{ card.name }}.png"
             [style]="{rotate:card.rotation}" alt="">
-        <img *ngIf="pickCardAnimation" class="pick-card" src="assets/img/cards/{{ currentCard }}.png"
+        <img *ngIf="game.pickCardAnimation" class="pick-card" src="assets/img/cards/{{ game.currentCard }}.png"
             [style.--card-rotation]="rotation" alt="">
     </div>
 </div>
@@ -18,4 +18,4 @@
     <mat-icon>add</mat-icon>
 </button>
 
-<app-rules [card]="currentCard" class="rules"></app-rules>
+<app-rules [card]="game.currentCard" class="rules"></app-rules>

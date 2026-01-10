@@ -15,8 +15,6 @@ import { GamesService } from '../firebase-service/games.service';
 
 export class GameComponent implements OnInit {
   game!: Game;
-  currentCard: string | undefined = '';
-  pickCardAnimation: boolean = false;
   rotation = '0deg';
 
   constructor(private gameService: GamesService, private route: ActivatedRoute, public dialog: MatDialog) { }
@@ -29,9 +27,11 @@ export class GameComponent implements OnInit {
         this.game.playedCards = game.playedCards;
         this.game.players = game.players;
         this.game.stack = game.stack;
-      })
-    })
-
+        this.game.id = params['id'];
+        this.game.currentCard = game.currentCard;
+        this.game.pickCardAnimation = game.pickCardAnimation;
+      });
+    });
   }
 
   newGame() {
@@ -40,35 +40,37 @@ export class GameComponent implements OnInit {
 
   takeCard() {
     if (this.game.players.length == 0) {
-      return
-    }
-    if (!this.pickCardAnimation) {
-      this.currentCard = this.game.stack.pop();
+      return;
+    };
+    if (!this.game.pickCardAnimation) {
+      this.game.currentCard = this.game.stack.pop();
       this.rotation = this.getRandomRotation();
-      this.pickCardAnimation = true;
+      this.game.pickCardAnimation = true;
+      this.gameService.updateGame(this.game);
       this.handelCard();
     };
   };
 
   handelCurrentPlayer() {
-    this.game.currentPlayer++
-    this.game.currentPlayer = this.game.currentPlayer % this.game.players.length
-  }
+    this.game.currentPlayer++;
+    this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
+  };
 
   handelCard() {
     setTimeout(() => {
-      this.pickCardAnimation = false;
-      if (this.currentCard != undefined) {
+      this.game.pickCardAnimation = false;
+      if (this.game.currentCard != undefined) {
         this.game.playedCards.push({
-          name: this.currentCard,
+          name: this.game.currentCard,
           rotation: this.rotation
         });
         this.handelCurrentPlayer();
+        this.gameService.updateGame(this.game);
       } else {
         alert('Game End');
       };
     }, 1000);
-  }
+  };
 
   getRandomRotation(): string {
     return `${Math.floor(Math.random() * 5) - 2}deg`;
@@ -77,14 +79,11 @@ export class GameComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent, {
     });
-
     dialogRef.afterClosed().subscribe(name => {
       if (name) {
-        this.game.players.push(name)
-      }
-
+        this.game.players.push(name);
+        this.gameService.updateGame(this.game);
+      };
     });
-  }
-
-
+  };
 };

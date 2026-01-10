@@ -3,9 +3,12 @@ export class Game {
     public stack: string[] = [];
     public playedCards: { name: string; rotation: string }[] = [];
     public currentPlayer: number = 0;
+    public id?: string;
+    public currentCard: string | undefined = '';
+    public pickCardAnimation: boolean = false;
 
     constructor() {
-        this.createStack()
+        this.createStack();
     };
 
     createStack() {
@@ -16,18 +19,9 @@ export class Game {
             this.stack.push('spade_' + index);
         };
         this.shuffleStack(this.stack);
-    }
+    };
 
     shuffleStack(arr: String[]) {
         arr.sort(() => Math.random() - 0.5);
     };
-
-    gameToJson(){
-        return {
-            players: this.players,
-            stack: this.stack,
-            playedCards: this.playedCards,
-            currentPlayer: this.currentPlayer
-        }
-    }
 };

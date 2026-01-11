@@ -21,6 +21,7 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
 import { environment } from '../app/environments/environment';
+import { EditPlayerComponent } from './edit-player/edit-player.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { environment } from '../app/environments/environment';
     PlayerComponent,
     DialogAddPlayerComponent,
     RulesComponent,
+    EditPlayerComponent,
   ],
   imports: [
     BrowserModule,

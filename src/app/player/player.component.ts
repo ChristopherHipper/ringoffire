@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class PlayerComponent {
   @Input()playerName:string = '';
   @Input()activePlayer:boolean = false;
+  @Input()playerImage:string = 'player.png';
 }

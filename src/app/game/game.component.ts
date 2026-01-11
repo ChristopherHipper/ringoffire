@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 import { ActivatedRoute } from '@angular/router';
 import { GamesService } from '../firebase-service/games.service';
+import { EditPlayerComponent } from '../edit-player/edit-player.component';
 
 
 @Component({
@@ -30,6 +31,7 @@ export class GameComponent implements OnInit {
         this.game.id = params['id'];
         this.game.currentCard = game.currentCard;
         this.game.pickCardAnimation = game.pickCardAnimation;
+        this.game.playerImage = game.playerImage;
       });
     });
   }
@@ -77,13 +79,29 @@ export class GameComponent implements OnInit {
   };
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogAddPlayerComponent, {
-    });
+    const dialogRef = this.dialog.open(DialogAddPlayerComponent);
     dialogRef.afterClosed().subscribe(name => {
       if (name) {
         this.game.players.push(name);
+        this.game.playerImage.push('player.png')
         this.gameService.updateGame(this.game);
       };
     });
   };
+
+  editPlayer(playerId: number) {
+    const dialogRef = this.dialog.open(EditPlayerComponent);
+    dialogRef.afterClosed().subscribe(changes => {
+      if (changes) {
+        this.game.playerImage[playerId] = changes
+        this.gameService.updateGame(this.game);
+      }
+
+    });
+
+  }
+
+  calcTop(i: number): string {
+    return `calc(${i} * var(--player-spacing))`;
+  }
 };

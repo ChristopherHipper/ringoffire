@@ -23,6 +23,7 @@ export class GamesService {
       currentPlayer: game.currentPlayer,
       currentCard: game.currentCard,
       pickCardAnimation: game.pickCardAnimation,
+      playerImage: game.playerImage,
     };
   };
 

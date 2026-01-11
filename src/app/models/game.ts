@@ -6,6 +6,7 @@ export class Game {
     public id?: string;
     public currentCard: string | undefined = '';
     public pickCardAnimation: boolean = false;
+    public playerImage: string[] = [];
 
     constructor() {
         this.createStack();

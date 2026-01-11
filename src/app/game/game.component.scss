@@ -13,11 +13,16 @@
     img {
         position: absolute;
         width: 150px;
+        @media (max-width: 600px) {
+        left: 120px;
+        width: 100px;
     }
+    }  
 }
 
 .card-stack-img {
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
+    
 }
 
 .top-card {
@@ -39,6 +44,9 @@
 
 .played-card {
     transform: scale(1.2) translateX(150px) translateY(-250px);
+    @media (max-width: 800px) {
+        transform: scale(1.0) translateX(100px) translateY(-250px);
+    }
 }
 
 @keyframes pick-card-animation {
@@ -55,13 +63,8 @@
     }
 
     100% {
-        transform: scale(1.2) translateX(150px) translateY(-250px) rotate(var(--card-rotation));
+        transform: scale(1.2) translateX(100px) translateY(-250px) rotate(var(--card-rotation));
     }
-}
-
-.player-position {
-    position: absolute;
-    right: 0;
 }
 
 .add-player-btn {
@@ -77,8 +80,23 @@
     }
 }
 
-.rules{
+.rules {
     position: absolute;
-    left: 100px;
-    bottom: 100px;
+    bottom: 80px;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.player-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-height: 300px;
+    overflow-y: auto;
+    --player-spacing: 80px;
+
+    @media (max-width: 800px) {
+        max-height: 300px;
+        --player-spacing: 50px;
+    }
 }

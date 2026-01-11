@@ -1,4 +1,4 @@
 <div class="player" [class.active-Player]="activePlayer">
-    <img src="assets/img/player.png" alt="">
-    <div>{{playerName}}</div>
+    <img src="assets/img/{{ playerImage }}" alt="">
+    <div>{{playerName.substring(0, 15)}}</div>
 </div>

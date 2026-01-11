@@ -14,11 +14,20 @@
 .start-label-box {
     position: absolute;
     @include display-center;
-    right: 30%;
+    right: 20%;
+    @media (max-width: 600px) {
+        right: 0%;
+    }
+
     img {
-        width: 20vw;
+        width: 350px;
         height: 200px;
         cursor: pointer;
+
+        @media (max-width: 600px) {
+            width: 250px;
+            height: 150px;
+        }
 
         &:hover {
             filter: brightness(1.4);

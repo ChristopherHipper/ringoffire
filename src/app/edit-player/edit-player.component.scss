@@ -1,0 +1,10 @@
+.profile-picture{
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    margin: 12px;
+
+    &:hover{
+        transform: scale(1.1);
+    }
+}

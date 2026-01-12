@@ -1,10 +1,19 @@
 .profile-picture{
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     cursor: pointer;
     margin: 12px;
 
     &:hover{
         transform: scale(1.1);
     }
+}
+
+.dialog-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-container{
+    justify-content: end;
 }

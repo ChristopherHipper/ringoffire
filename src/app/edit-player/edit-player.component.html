@@ -1,1 +1,14 @@
-<img class="profile-picture" [mat-dialog-close]="picture" *ngFor="let picture of allPictures" src="assets/img/{{ picture }}" alt="">
+<div class="dialog-header">
+    <h1 mat-dialog-title>Chose your Icon</h1>
+    <button mat-button (click)="dialogRef.close()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+<img class="profile-picture" [mat-dialog-close]="picture" *ngFor="let picture of allPictures"
+    src="assets/img/{{ picture }}" alt="">
+
+<div class="btn-container" mat-dialog-actions>
+    <button color="warn" class="delete-btn" mat-button [mat-dialog-close]="'delete'">
+        Delete Player
+    </button>
+</div>

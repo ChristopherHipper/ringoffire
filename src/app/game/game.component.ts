@@ -17,6 +17,7 @@ import { EditPlayerComponent } from '../edit-player/edit-player.component';
 export class GameComponent implements OnInit {
   game!: Game;
   rotation = '0deg';
+  gameOver: boolean = false;
 
   constructor(private gameService: GamesService, private route: ActivatedRoute, public dialog: MatDialog) { }
 
@@ -42,7 +43,11 @@ export class GameComponent implements OnInit {
 
   takeCard() {
     if (this.game.players.length == 0) {
-      return;
+      return
+    }
+    if (this.game.stack.length == 0) {
+      this.gameOver = true;
+      return
     };
     if (!this.game.pickCardAnimation) {
       this.game.currentCard = this.game.stack.pop();
@@ -68,9 +73,7 @@ export class GameComponent implements OnInit {
         });
         this.handelCurrentPlayer();
         this.gameService.updateGame(this.game);
-      } else {
-        alert('Game End');
-      };
+      }
     }, 1000);
   };
 
@@ -93,12 +96,16 @@ export class GameComponent implements OnInit {
     const dialogRef = this.dialog.open(EditPlayerComponent);
     dialogRef.afterClosed().subscribe(changes => {
       if (changes) {
-        this.game.playerImage[playerId] = changes
+        if (changes == 'delete') {
+          this.game.players.splice(playerId, 1)
+          this.game.playerImage.splice(playerId, 1)
+        } else {
+          this.game.playerImage[playerId] = changes
+
+        }
         this.gameService.updateGame(this.game);
       }
-
     });
-
   }
 
   calcTop(i: number): string {

@@ -1,4 +1,7 @@
 <div class="field">
+    <div class="game-over" *ngIf="gameOver">
+        <img src="assets/img/game-over.png" alt="">
+    </div>
     <div class="card-stack">
         <img class="card-stack-img" *ngFor="let c of [0,2,4,6]; let i = index" [style]="{rotate: 1*i+'deg'}"
             src="assets/img/cards/card_cover.png" alt="">

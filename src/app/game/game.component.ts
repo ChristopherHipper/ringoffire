@@ -93,12 +93,20 @@ export class GameComponent implements OnInit {
   };
 
   editPlayer(playerId: number) {
-    const dialogRef = this.dialog.open(EditPlayerComponent);
+const dialogRef = this.dialog.open(EditPlayerComponent);
     dialogRef.afterClosed().subscribe(changes => {
       if (changes) {
         if (changes == 'delete') {
+          if (playerId == this.game.players.length - 1 && playerId == this.game.currentPlayer) {
+            this.game.currentPlayer = 0
+          }
+          if (playerId < this.game.currentPlayer ) {
+            this.game.currentPlayer = this.game.currentPlayer - 1
+          }
           this.game.players.splice(playerId, 1)
           this.game.playerImage.splice(playerId, 1)
+
+
         } else {
           this.game.playerImage[playerId] = changes
 

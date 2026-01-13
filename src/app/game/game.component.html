@@ -17,10 +17,11 @@
         [activePlayer]="i == game.currentPlayer" class="player-position" [playerName]="player" [playerImage]="game.playerImage[i]"></app-player>
 </div>
 
-
+ <img class="preload-image" src="assets/img/cards/{{ this.game.stack[this.game.stack.length-1] }}.png" alt="">
 
 <button (click)="openDialog()" class="add-player-btn" mat-fab color="primary">
     <mat-icon>add</mat-icon>
 </button>
 
 <app-rules [card]="game.currentCard" class="rules"></app-rules>
+
